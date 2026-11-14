@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="robots" content="noindex" />
+  <title>Humanize: sign in</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✎</text></svg>" />
+  <script type="module" crossorigin src="./assets/index-DfTVh2gN.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Crl8iknv.css">
+</head>
+<body>
+  <main class="gate" id="gate">
+    <h1>Humanize</h1>
+    <p class="lede">Edits text so it reads like natural writing, and shows you every change.</p>
+
+    <div class="tabs" role="tablist" aria-label="Sign in or request access">
+      <button type="button" role="tab" id="tab-in" aria-selected="true" aria-controls="signin">Sign in</button>
+      <button type="button" role="tab" id="tab-req" aria-selected="false" aria-controls="request">Request access</button>
+      <button type="button" role="tab" id="tab-guest" aria-selected="false" aria-controls="guest">Guest code</button>
+    </div>
+
+    <form id="signin" role="tabpanel" aria-labelledby="tab-in" novalidate>
+      <label>Email<input name="email" type="email" autocomplete="username" required /></label>
+      <label>Password<input name="password" type="password" autocomplete="current-password" required /></label>
+      <label class="check"><input name="remember" type="checkbox" /> Keep me signed in on this device</label>
+      <button type="submit" class="primary">Sign in</button>
+      <button type="button" class="link" id="to-recover">Forgot your password?</button>
+    </form>
+
+    <form id="recover" hidden novalidate aria-labelledby="recover-h">
+      <h2 id="recover-h" class="sub">Set a new password with your recovery code</h2>
+      <p class="hint">You were given a recovery code when you asked for access, or made one in Account. Your projects stay as they are.</p>
+      <label>Email<input name="email" type="email" autocomplete="username" required /></label>
+      <label>Recovery code<input name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" required placeholder="ABCD-EFGH-JKLM-NPQR-STUV" /></label>
+      <label>New password (10 characters or more)<input name="password" type="password" autocomplete="new-password" minlength="10" required /></label>
+      <label>New password again<input name="password2" type="password" autocomplete="new-password" minlength="10" required /></label>
+      <button type="submit" class="primary">Set new password</button>
+      <button type="button" class="link" id="back-signin">Back to sign in</button>
+    </form>
+
+    <section id="show-code" hidden aria-labelledby="code-h" class="code-panel">
+      <h2 id="code-h" class="sub">Your recovery code</h2>
+      <p class="code" id="code-text"></p>
+      <p class="hint">If you forget your password, this code lets you set a new one without losing your projects. Keep it somewhere safe, away from your password. It’s shown only now.</p>
+      <div class="row"><button type="button" class="secondary" id="code-copy">Copy</button><button type="button" class="secondary" id="code-save">Save as a text file</button></div>
+      <label class="check"><input type="checkbox" id="code-ok" /> I’ve saved my recovery code</label>
+      <button type="button" class="primary" id="code-continue" disabled>Continue</button>
+    </section>
+
+    <form id="guest" role="tabpanel" aria-labelledby="tab-guest" hidden novalidate>
+      <p class="hint">If you were given a guest code, type it here. Guests can use Humanize without an account; nothing is saved online.</p>
+      <label>Guest code<input name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" required placeholder="ABCD-EFGH-JKLM-NPQR" /></label>
+      <button type="submit" class="primary">Open as a guest</button>
+      <button type="button" class="secondary" id="open-guest" hidden>Try it without a code</button>
+    </form>
+
+    <form id="request" role="tabpanel" aria-labelledby="tab-req" hidden novalidate>
+      <p class="hint" id="req-hint">Your browser makes a personal key and locks it with your password. You send the access request file to the administrator; it contains no password. Once they add you, sign in with this email and password.</p>
+      <label>Name<input name="name" autocomplete="name" required maxlength="80" /></label>
+      <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+      <label>Password (10 characters or more)<input name="password" type="password" autocomplete="new-password" minlength="10" required /></label>
+      <label>Password again<input name="password2" type="password" autocomplete="new-password" minlength="10" required /></label>
+      <div id="turnstile" hidden></div>
+      <button type="submit" class="primary" id="req-submit">Make access request</button>
+    </form>
+
+    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    <p class="fine">Your password never leaves this device. Forgotten it? Make a new access request and send it to the administrator.</p>
+  </main>
+</body>
+</html>
